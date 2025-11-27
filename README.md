@@ -1,17 +1,257 @@
-# Pokémon Explorer - zadanie rekrutacyjne
+# Pokémon Explorer
+
+> **Language / Język:** [English](#english) | [Polski](#polski)
+
+---
+
+# English
+
+A Pokémon browsing application built with Vue 3, Vuetify 3, and PokeAPI.
+
+## Table of Contents
+
+- [Requirements](#requirements)
+- [Installation](#installation)
+- [Running](#running)
+- [Application Description](#application-description)
+- [Features](#features)
+- [Project Structure](#project-structure)
+- [Technologies](#technologies)
+- [API](#api)
+
+## Requirements
+
+Before running the application, make sure you have installed:
+
+- **Node.js** (version 18 or newer)
+- **npm** (version 9 or newer) or **yarn**
+
+## Installation
+
+1. **Clone the repository** (or extract the archive):
+
+```bash
+git clone <repository-url>
+cd poke_dex_zadanie
+```
+
+2. **Install dependencies**:
+
+```bash
+npm install
+```
+
+## Running
+
+### Development Mode
+
+Run the development server with hot-reload:
+
+```bash
+npm run dev
+```
+
+The application will be available at: **http://localhost:3000/poke_dex_zadanie/**
+
+### Production Build
+
+Build the application for deployment:
+
+```bash
+npm run build
+```
+
+Production files will be in the `dist/` folder.
+
+### Production Preview
+
+```bash
+npm run preview
+```
+
+### TypeScript Type Checking
+
+```bash
+npm run type-check
+```
+
+### Linting
+
+```bash
+npm run lint
+```
+
+## Application Description
+
+**Pokémon Explorer** is a web application for browsing and searching Pokémon using data from [PokeAPI](https://pokeapi.co/)
+
+### Main Features:
+
+- **Colorful cards** with gradients matching Pokémon types
+- **Search** by Pokémon name
+- **Filtering** by types
+- **Dynamic loading** ("Load More" button)
+- **Responsive design** adapted for mobile devices
+- **Details modal** with sprite gallery, evolutions, and locations
+
+## Features
+
+### 1. Pokémon List
+
+Pokémon are displayed as cards containing:
+- Thumbnail (official artwork)
+- Name
+- ID number (e.g., #001)
+- Type chips
+- Colorful background matching types (gradient for dual-type Pokémon)
+
+### 2. Type Filtering
+
+- 18 available Pokémon types (Normal, Fire, Water, etc.)
+- Ability to select multiple types simultaneously
+- Chips with hover effects
+- Filtering is done on the API side
+
+### 3. Search
+
+- Search field with debounce (500ms)
+- Search by Pokémon name
+- Can be combined with type filters
+
+### 4. Dynamic Loading
+
+- Initial loading of 18 Pokémon
+- "Load More" button to load more
+- "All Pokémon loaded" message when all are loaded
+- Loading and error state handling
+
+### 5. Pokémon Details Modal
+
+Clicking on a Pokémon card opens a modal with tabs:
+
+| Tab | Content |
+|-----|---------|
+| **About** | Description, height, weight, base experience, abilities |
+| **Stats** | Base stats with progress bars (HP, Attack, Defense, etc.) |
+| **Sprites** | Gallery of all available sprites |
+| **Evolution** | Evolution chain with thumbnails and levels |
+| **Locations** | List of locations where the Pokémon can be found |
+
+## Project Structure
+
+```
+poke_dex_zadanie/
+├── public/                 # Static files
+│   ├── favicon.ico
+│   └── logo.png
+├── src/
+│   ├── components/         # Vue components
+│   │   ├── AppFooter.vue
+│   │   ├── AppHeader.vue
+│   │   ├── HomeView.vue           # Main view
+│   │   ├── PokemonCard.vue        # Pokémon card
+│   │   ├── PokemonDetailModal.vue # Details modal
+│   │   └── PokemonTypeChipFilter.vue # Type filters
+│   ├── layouts/            # Layouts
+│   │   └── default.vue
+│   ├── pages/              # Pages (auto-routing)
+│   │   └── index.vue
+│   ├── plugins/            # Vue plugins
+│   │   ├── index.ts
+│   │   └── vuetify.ts      # Vuetify configuration + type colors
+│   ├── services/           # API services
+│   │   └── pokemon.service.ts
+│   ├── stores/             # Pinia store
+│   │   ├── app.ts
+│   │   ├── index.ts
+│   │   └── pokemon.ts      # Pokémon store
+│   ├── styles/             # Global styles
+│   │   └── settings.scss
+│   ├── types/              # TypeScript types
+│   │   └── Pokemon.ts
+│   ├── App.vue
+│   └── main.ts
+├── index.html
+├── package.json
+├── tsconfig.json
+└── vite.config.mts
+```
+
+## Technologies
+
+| Technology | Version | Description |
+|------------|---------|-------------|
+| **Vue.js** | 3.5 | JavaScript framework |
+| **Vuetify** | 3.10 | UI component library |
+| **Pinia** | 3.0 | State management |
+| **Vue Router** | 4.5 | Routing |
+| **TypeScript** | 5.9 | Static typing |
+| **Vite** | 7.1 | Bundler and dev server |
+
+## API
+
+The application uses **PokeAPI** - a free, open API with Pokémon data.
+
+### Used Endpoints:
+
+| Endpoint | Description |
+|----------|-------------|
+| `GET /pokemon` | Pokémon list with pagination |
+| `GET /pokemon/{id}` | Pokémon details |
+| `GET /type/{type}` | Pokémon of a given type |
+| `GET /pokemon-species/{id}` | Species data (description, evolutions) |
+| `GET /evolution-chain/{id}` | Evolution chain |
+| `GET /pokemon/{id}/encounters` | Encounter locations |
+
+### API Documentation:
+- Homepage: https://pokeapi.co/
+- Documentation: https://pokeapi.co/docs/v2
+
+## Type Colors
+
+The application uses custom colors for each Pokémon type, defined in the Vuetify theme:
+
+| Type | Color |
+|------|-------|
+| Normal | `#A8A77A` |
+| Fire | `#EE8130` |
+| Water | `#6390F0` |
+| Electric | `#F7D02C` |
+| Grass | `#7AC74C` |
+| Ice | `#96D9D6` |
+| Fighting | `#C22E28` |
+| Poison | `#A33EA1` |
+| Ground | `#E2BF65` |
+| Flying | `#A98FF3` |
+| Psychic | `#F95587` |
+| Bug | `#A6B91A` |
+| Rock | `#B6A136` |
+| Ghost | `#735797` |
+| Dragon | `#6F35FC` |
+| Dark | `#705746` |
+| Steel | `#B7B7CE` |
+| Fairy | `#D685AD` |
+
+## Author
+
+Project created as a recruitment task.
+
+---
+
+# Polski
 
 Aplikacja do przeglądania Pokémonów, zbudowana z wykorzystaniem Vue 3, Vuetify 3 i PokeAPI.
 
 ## Spis treści
 
-- [Wymagania](#-wymagania)
-- [Instalacja](#-instalacja)
-- [Uruchomienie](#-uruchomienie)
-- [Opis aplikacji](#-opis-aplikacji)
-- [Funkcjonalności](#-funkcjonalności)
-- [Struktura projektu](#-struktura-projektu)
-- [Technologie](#-technologie)
-- [API](#-api)
+- [Wymagania](#wymagania)
+- [Instalacja](#instalacja)
+- [Uruchomienie](#uruchomienie)
+- [Opis aplikacji](#opis-aplikacji)
+- [Funkcjonalności](#funkcjonalności)
+- [Struktura projektu](#struktura-projektu)
+- [Technologie](#technologie)
+- [API](#api-1)
 
 ## Wymagania
 
