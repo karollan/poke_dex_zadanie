@@ -105,7 +105,7 @@ export const usePokemonStore = defineStore('pokemon', {
         const pageNames = namesToFetch.slice(0, this.itemsPerPage)
         const pokemons = await fetchPokemonBatch(pageNames)
 
-        this.pokemons = pokemons.toSorted((a, b) => a.id - b.id)
+        this.pokemons = pokemons.toSorted((a: Pokemon, b: Pokemon) => a.id - b.id)
         this.hasNextPage = this.pokemons.length < this.totalCount
       } catch (error) {
         this.error = error instanceof Error ? error.message : 'Failed to load Pokemon'
@@ -144,7 +144,7 @@ export const usePokemonStore = defineStore('pokemon', {
         }
 
         const newPokemons = await fetchPokemonBatch(namesToFetch)
-        this.pokemons = [...this.pokemons, ...newPokemons].toSorted((a, b) => a.id - b.id)
+        this.pokemons = [...this.pokemons, ...newPokemons].toSorted((a: Pokemon, b: Pokemon) => a.id - b.id)
         this.hasNextPage = this.pokemons.length < this.totalCount
       } catch (error) {
         this.error = error instanceof Error ? error.message : 'Failed to load more Pokemon'

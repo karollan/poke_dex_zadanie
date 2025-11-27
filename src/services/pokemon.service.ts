@@ -63,12 +63,12 @@ export async function fetchLocationEncounters (pokemonId: number): Promise<Locat
 // get ID from URL
 export function getPokemonIdFromUrl (url: string): number {
   const matches = url.match(/\/pokemon\/(\d+)\//)
-  return matches ? Number.parseInt(matches[1], 10) : 0
+  return matches?.[1] ? Number.parseInt(matches[1], 10) : 0
 }
 
 export function getSpeciesIdFromUrl (url: string): number {
   const matches = url.match(/\/pokemon-species\/(\d+)\//)
-  return matches ? Number.parseInt(matches[1], 10) : 0
+  return matches?.[1] ? Number.parseInt(matches[1], 10) : 0
 }
 
 // response to Pokemon object

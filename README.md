@@ -45,7 +45,7 @@ Uruchom serwer deweloperski z hot-reload:
 npm run dev
 ```
 
-Aplikacja będzie dostępna pod adresem: **http://localhost:3000**
+Aplikacja będzie dostępna pod adresem: **http://localhost:3000/poke_dex_zadanie/**
 
 ### Budowanie produkcyjne
 
