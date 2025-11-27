@@ -18,6 +18,9 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: poke_dex_zadanie
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -26,15 +29,11 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: npm
-          cache-dependency-path: poke_dex_zadanie/package-lock.json
 
       - name: Install dependencies
-        working-directory: poke_dex_zadanie
         run: npm ci
 
       - name: Build
-        working-directory: poke_dex_zadanie
         run: npm run build
 
       - name: Setup Pages
